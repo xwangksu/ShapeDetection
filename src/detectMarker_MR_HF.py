@@ -82,26 +82,27 @@ def matachGCP(theDist, pointCamera, gcpFile):
         [utmGCPx, utmGCPy, latGCPzone, longGCPzone] = utm.from_latlon(gcp[2],gcp[1])
         point_gcp = numpy.array((utmGCPx, utmGCPy))
 #         print(numpy.sqrt(numpy.sum((pointCamera - point_gcp) ** 2)) - theDist)
-        diffDist = numpy.sqrt(numpy.sum((pointCamera - point_gcp) ** 2)) - theDist
-        if diffDist <= minDist:
-            secondMinDist = minDist
-            secGCPLabel = gcpLabel
-            minDist = diffDist
-            gcpLongi = gcp[1]
-            gcpLati = gcp[2]
-            gcpAlti = gcp[3]
-            gcpLabel = gcp[0]
+        if numpy.sqrt(numpy.sum((pointCamera - point_gcp) ** 2)) <=10:
+            diffDist = numpy.absolute(numpy.sqrt(numpy.sum((pointCamera - point_gcp) ** 2)) - theDist)
+            if diffDist <= minDist:
+                secondMinDist = minDist
+                secGCPLabel = gcpLabel
+                minDist = diffDist
+                gcpLongi = gcp[1]
+                gcpLati = gcp[2]
+                gcpAlti = gcp[3]
+                gcpLabel = gcp[0]
     print("First Min Distance: %f - GCP-%d; Seconde Min Distance: %f - GCP-%d" % (minDist, gcpLabel, secondMinDist, secGCPLabel))
     return [gcpLongi, gcpLati, gcpAlti, gcpLabel]
 # End of function
 
 # Set working path
-workingPath = "H:/2016-2017_wheat/17ASH/17ASH_HF/17ASH_HF_0331/0000SET/"
+workingPath = "F:/Wheat_2017/17ASH_HF_0417/"
 # Set source images path
 srcImagePath = workingPath+"blue/"
 imageFiles = os.listdir(srcImagePath)
 # Set GCP file
-srcGCPFile = "F:/Xu/2017_Ash_HF_GCPs_al28.csv"
+srcGCPFile = "E:/xuwang/2017_Ash_HF_GCPs_al28.csv"
 
 # Set the shrink image size, always 1/2 of the regular size
 # Hence it should be equal to the center of the image
@@ -111,10 +112,10 @@ sh_ratio = 0.5
 # Set the GCP area filter value
 th_GCP = 210
 # Set the Gaussian filter size
-gaussian_size = 5
+gaussian_size = 3
 # Set the detected contour area size
-contour_min_size = 80
-contour_max_size = 160
+contour_min_size = 70
+contour_max_size = 110
 # Get system time to mark the output marker file
 t_index = str(datetime.now().strftime('%Y%m%d_%H%M%S'))
 # Set final output file name

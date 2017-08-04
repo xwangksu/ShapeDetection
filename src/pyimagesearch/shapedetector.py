@@ -40,7 +40,7 @@ class ShapeDetector:
             #shape = "square" if ar >= 0.70 and ar <= 1.3 else "rectangle"
             # MR
             # Kansas shape = "square" if ar >= 0.90 and ar <= 1.1 else "rectangle"
-            shape = "square" if ar >= 0.95 and ar <= 1.05 else "rectangle"
+            shape = "square" if ar >= 0.9 and ar <= 1.1 else "rectangle"
 
         # if the shape is a pentagon, it will have 5 vertices
 #         elif len(approx) == 5:

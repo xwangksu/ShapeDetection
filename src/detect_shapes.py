@@ -35,7 +35,7 @@ ratio = image.shape[0] / float(resized.shape[0])
 # and threshold it
 gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
 blurred = cv2.GaussianBlur(gray, (3, 3), 0)
-thresh = cv2.threshold(blurred, 230, 255, cv2.THRESH_BINARY)[1]
+thresh = cv2.threshold(blurred, 210, 255, cv2.THRESH_BINARY)[1]
 cv2.imshow("Image", thresh)
 cv2.waitKey(0)
 
@@ -65,12 +65,12 @@ for c in cnts:
     
     if shape == "rectangle" or shape == "square":
         print(shape)
-        print(cv2.contourArea(c))
+        print("Estimated contour size: %f" % (cv2.contourArea(c)))
         c = c.astype("float")
         c *= ratio
         c = c.astype("int")
-        print("Estimated contour size:")
-        print(cv2.contourArea(c))
+#         print("Estimated contour size:")
+#         print(cv2.contourArea(c))
 #         print(12*2.54/100*4*0.9/cv2.contourArea(c))
         cv2.drawContours(image, [c], -1, (0, 255, 0), 1)
         cv2.putText(image, shape, (cX, cY), cv2.FONT_HERSHEY_SIMPLEX,
