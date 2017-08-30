@@ -97,12 +97,12 @@ def matachGCP(theDist, pointCamera, gcpFile):
 # End of function
 
 # Set working path
-workingPath = "F:/Wheat_2017/17ASH_HF_0417/"
+workingPath = "F:/Wheat_2017/17LDH_SAG_0302/"
 # Set source images path
 srcImagePath = workingPath+"blue/"
 imageFiles = os.listdir(srcImagePath)
 # Set GCP file
-srcGCPFile = "E:/xuwang/2017_Ash_HF_GCPs_al28.csv"
+srcGCPFile = "F:/Wheat_2017/17LDH_SAG_0302/gcps.csv"
 
 # Set the shrink image size, always 1/2 of the regular size
 # Hence it should be equal to the center of the image
@@ -114,8 +114,8 @@ th_GCP = 210
 # Set the Gaussian filter size
 gaussian_size = 3
 # Set the detected contour area size
-contour_min_size = 70
-contour_max_size = 110
+contour_min_size = 40
+contour_max_size = 70
 # Get system time to mark the output marker file
 t_index = str(datetime.now().strftime('%Y%m%d_%H%M%S'))
 # Set final output file name
